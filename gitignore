@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Local data & artifacts
+data/*
+!data/README.md
+artifacts/*
+!artifacts/eda/.keep
+!artifacts/model/.keep
+dashboards/*.pbix
+
+# Azure ML local metadata
+aml_config/
+azureml_logs/
