@@ -1,5 +1,28 @@
+import os
 import pandas as pd
-import numpy as np
+
+def load_event_log(data_dir: str, xes_name: str) -> pd.DataFrame:
+    xes_path = os.path.join(data_dir, xes_name)
+
+    if os.path.exists(xes_path):
+        print(f"[INFO] Loading XES: {xes_path}")
+        from pm4py import read_xes, convert_to_dataframe
+
+        log = read_xes(xes_path)
+        df = convert_to_dataframe(log)
+        df = df.rename(columns={
+            "case:concept:name": "case_id",
+            "concept:name": "activity",
+            "time:timestamp": "timestamp",
+            "org:resource": "resource"
+        })
+        df = ensure_schema(df, case_col="case_id", act_col="activity", ts_col="timestamp", res_col="resource")
+        return df
+
+    raise FileNotFoundError(
+        f"Could not find XES({xes_path}). "
+        "Put your file in the data/ folder. See data/README.md."
+    )
 
 def ensure_schema(df, case_col, act_col, ts_col, res_col=None):
     # normalize column names
