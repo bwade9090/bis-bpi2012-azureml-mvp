@@ -1,0 +1,6 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
+name: bpi2012-risk-endpoint
+auth_mode: key
+tags:
+  project: bpi2012
+  stage: mvp
