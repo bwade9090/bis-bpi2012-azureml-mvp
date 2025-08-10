@@ -16,9 +16,6 @@ __pycache__/
 # Local data & artifacts
 data/*
 !data/README.md
-artifacts/*
-!artifacts/eda/.keep
-!artifacts/model/.keep
 dashboards/*.pbix
 
 # Azure ML local metadata
