@@ -10,8 +10,8 @@ threshold = 0.5
 def init():
     global model, feature_names, threshold
     model_dir = os.getenv("AZUREML_MODEL_DIR", ".")
-    model_path = os.path.join(model_dir, "model.joblib")
-    feat_path = os.path.join(model_dir, "feature_names.json")
+    model_path = os.path.join(model_dir, "model/model.joblib")
+    feat_path = os.path.join(model_dir, "model/feature_names.json")
 
     model = joblib.load(model_path)
     if os.path.exists(feat_path):

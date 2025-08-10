@@ -3,22 +3,21 @@ name: blue
 endpoint_name: bpi2012-risk-endpoint
 
 # local path to a folder containing model.joblib and feature_names.json
-model: azureml://subscriptions/94217b95-1487-4560-ab1a-12ab074bc31d/resourceGroups/rg-bpi12/providers/Microsoft.MachineLearningServices/workspaces/ml-bpi12/models/model-bpi12:1
+model: ./artifacts/model
 
 code_configuration:
-  code: /Users/hyungbae/Projects/bis-bpi2012-azureml-mvp/infra/inference
+  code: ./infra/inference
   scoring_script: score.py
 
 environment:
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:20240516.v1
-  conda_file: /Users/hyungbae/Projects/bis-bpi2012-azureml-mvp/infra/environment-conda.yml
+  image: mcr.microsoft.com/azureml/minimal-ubuntu22.04-py39-cpu-inference:latest
+  conda_file: ./infra/environment-conda.yml
 
 instance_type: Standard_DS2_v2
 instance_count: 1
 
 request_settings:
   request_timeout_ms: 60000
-  max_queue_wait_ms: 5000
 
 liveness_probe:
   initial_delay: 10

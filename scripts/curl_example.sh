@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ENDPOINT_NAME=${1:-bpi2012-risk-endpoint}
-SCORING_URI=$(az ml online-endpoint show -n $ENDPOINT_NAME --query scoring_uri -o tsv)
-KEY=$(az ml online-endpoint get-credentials -n $ENDPOINT_NAME --query primaryKey -o tsv)
+SCORING_URI="https://bpi2012-risk-endpoint.koreacentral.inference.ml.azure.com/score"
+KEY=<PRIMARY_KEY>
 
 cat > sample.json << 'JSON'
 [
