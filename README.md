@@ -12,48 +12,32 @@ Built to mirror the **BIS Data & AI Engineer** remit: data engineering, process 
 
 ## Why this project matters (role alignment)
 
-- **Process analysis & optimisation:** PM4Py EDA (variants, DFG, bottlenecks) from a real event log (BPI 2012).  
-- **AI & automation:** Baseline XGBoost model trained and exposed via **Azure ML Managed Online Endpoint** (REST inference).  
-- **Tooling & dashboards:** **3‑page Power BI** report (web) showing process health, bottlenecks, and a prediction lens with a **threshold slider** and **confusion‑matrix metrics** (Precision/Recall/F1).  
-- **Collaboration & documentation:** Public, reproducible repo with step‑by‑step notebooks/scripts and lightweight architecture.
+- **Process analysis & optimisation:** PM4Py EDA (variants, DFG, bottlenecks) on the BPI 2012 event log.  
+- **AI & automation:** Baseline XGBoost trained and exposed via **Azure ML Managed Online Endpoint** (REST).  
+- **Tooling & dashboards:** **3‑page Power BI (web)** report with a **threshold slider** and **Precision/Recall/F1** cards.  
+- **Documentation & reproducibility:** Clean notebooks/scripts, thin architecture, and public artifacts.
 
 ---
 
 ## What’s included
 
-- **Notebooks**  
-  `01_prepare_bpi2012.ipynb` — clean, features, label (q75 late)  
-  `02_process_mining_eda.ipynb` — process map + stats  
-  `03_train_register_deploy.ipynb` — train → register → deploy (Azure ML)  
-  `04_batch_scoring_and_export.ipynb` — batch scoring → CSVs for Power BI
+- **Python**  
+  `01_prepare_bpi2012.py` — clean, features, label (q75 late)  
+  `02_process_mining_eda.py` — process map + stats  
+  `03_train_register_deploy.py` — train → register → deploy (Azure ML)  
+  `04_batch_scoring_and_export.ipynb` — batch scoring → CSVs for Power BI (`cases.csv`, `events.csv`, `edges.csv`)
 
 - **Power BI (web, mac‑friendly)**  
   Pages: **Process Health**, **Bottleneck Map**, **Prediction Lens**  
-  Data model from `cases.csv`, `events.csv`, `edges.csv` (exported by notebook 04).  
-  DAX includes a **what‑if Threshold** parameter and **Precision/Recall/F1** measures.
+  DAX adds a **what‑if Threshold** and **Precision/Recall/F1**.  
 
 - **Inference**  
   Azure ML **Managed Online Endpoint** with key auth and JSON payloads.
 
 ---
 
-## Live assets (replace with your links)
 
-- **Report (.pbix):** `[link to PBIX download]`  
-- **Embedded report (iframe):**
-  ```html
-  <iframe
-    width="100%" height="720"
-    src="[YOUR_POWER_BI_EMBED_URL]"
-    frameborder="0" allowFullScreen="true">
-  </iframe>
-  ```
-- **Endpoint (REST, optional):** `https://bpi2012-risk-endpoint.koreacentral.inference.ml.azure.com/score`  
-- **Repo:** `https://github.com/bwade9090/bis-bpi2012-azureml-mvp.git`
-
----
-
-## Quick start (reproduce in ~15–30 min)
+## Quick start
 
 1) **Install**
 ```bash
@@ -61,34 +45,29 @@ pip install -r requirements.txt
 ```
 
 2) **Data**  
-Place `BPI_Challenge_2012.xes` in `data/`.
+Place `BPI_Challenge_2012.xes` (or `bpi2012.csv`) into `data/`.
 
 3) **Run Day 1**
-- 01 → 02 → 03 (set `AZURE_SUBSCRIPTION_ID`, `AZURE_RESOURCE_GROUP`, `AZURE_ML_WORKSPACE` to register/deploy).
+- Run notebooks **01 → 02 → 03** (set `AZURE_SUBSCRIPTION_ID`, `AZURE_RESOURCE_GROUP`, `AZURE_ML_WORKSPACE` to register/deploy).
 
 4) **Run Day 2**
-- 04 to export Power BI data: `artifacts/powerbi/{cases,events,edges}.csv`.
-
-5) **Power BI (web)**  
-Create a semantic model from `cases.csv`, then add `events.csv` and `edges.csv` to the same model.  
-Set relationship `Cases[case_id] 1—* Events[case_id]`.  
-Build the 3 pages using the provided DAX (threshold slider + F1/Precision/Recall).
+- Run **04** to export Power BI data: `artifacts/powerbi/{cases,events,edges}.csv`.
+- Build the web report: create a semantic model from `cases.csv`, then add `events.csv`/`edges.csv`.  
+  Relationship: `Cases[case_id] 1—* Events[case_id]`.
 
 ---
 
 ## Modeling summary
 
-- **Label:** late case if total cycle time > **75th percentile** (configurable in code).  
-- **Features (case‑level):** counts (events/resources/activities), inter‑event stats, weekend/working‑hour flags, etc.  
-- **Model:** XGBoost baseline; probabilities exposed as `risk_score` (used in Power BI).  
-- **Evaluation:** F1 / PR‑AUC reported in notebook 03; confusion matrix recomputed in Power BI via DAX as the **threshold changes**.  
-- **Batch scoring:** notebook 04 supports **local model** or **endpoint** mode and writes CSVs for BI.
-
-> Note: Azure Monitor/Model Monitor is intentionally **out of scope for this MVP**; left as a next‑step.
+- **Label:** late case if total cycle time > **75th percentile** (configurable).  
+- **Features (case‑level):** counts (events/resources/activities), inter‑event stats, weekend/working‑hour flags.  
+- **Model:** XGBoost baseline → probabilities as `risk_score`.  
+- **Evaluation:** F1 / PR‑AUC in 03_train_register_deploy.py; confusion matrix recomputed in Power BI as **threshold** changes.  
+- **Batch scoring:** notebook 04 supports **local** or **endpoint** mode and writes CSVs for BI.
 
 ---
 
-## Dashboard pages (web)
+## Dashboard pages
 
 - **Process Health:** KPIs (Total Cases, Late Rate, Avg/P95 Cycle Time), distributions, slice by resources/risk bins.  
 - **Bottleneck Map:** Edges matrix (from→to with counts/avg gap) or a process‑mining custom visual.  
@@ -118,10 +97,35 @@ BPI2012 (XES/CSV)
 
 ---
 
-## Next steps (if extended)
- 
-- Automate Power BI refresh via OneDrive/SharePoint or Dataflow; optional Fabric pipelines.  
-- Revisit label (SLA‑based), expand features, and calibrate threshold for business targets.
+
+## Live assets
+
+- **Open interactive report:** `YOUR_POWER_PAGES_OR_EMBED_URL`  
+- **PBIX download:** `LINK_TO_PBIX`  
+- **Repo:** `YOUR_REPO_URL`
+
+---
+
+## Inference (REST)
+<a id="inference-rest"></a>
+
+<p align="center">
+  <img src="screenshots/endpoint-status.png" width="950" alt="Azure ML — Managed Online Endpoint (blue) deployed and healthy" />
+  <img src="screenshots/endpoint-curl-test.png" width="950" alt="Azure ML — Managed Online Endpoint (blue) deployed and healthy" />
+  <br><sub>Azure ML endpoint — blue deployment live (keys & URI redacted)</sub>
+</p>
+
+```bash
+# Get scoring URI & key (CLI)
+az ml online-endpoint show -n <endpoint> --query scoring_uri -o tsv
+az ml online-endpoint get-credentials -n <endpoint> --query primaryKey -o tsv
+
+# Invoke (example)
+curl -s -X POST "$SCORING_URI" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $KEY" \
+  -d @scripts/sample_request.json
+```
 
 ---
 
