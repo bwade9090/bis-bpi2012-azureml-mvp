@@ -1,6 +1,11 @@
 # End‑to‑End Process Mining & Predictive Risk (BPI 2012) — Azure ML + Power BI
 
-**TL;DR.** A compact, reproducible template that mines process bottlenecks and predicts late‑completion risk from an ERP‑style event log.  
+<p align="center">
+  <img src="screenshots/pbi-bottleneck.png" width="1100" alt="Bottleneck Map — From→To edges with counts & avg gap" />
+  <br><sub>Bottleneck Map — Top transitions by count/avg gap (sample)</sub>
+</p>
+
+A compact, reproducible template that mines process bottlenecks and predicts late‑completion risk from an ERP‑style event log.  
 Built to mirror the **BIS Data & AI Engineer** remit: data engineering, process mining, Azure ML deployment, and Power BI reporting.
 
 ---

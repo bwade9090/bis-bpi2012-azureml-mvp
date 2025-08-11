@@ -16,7 +16,6 @@ __pycache__/
 # Local data & artifacts
 data/*
 !data/README.md
-dashboards/*.pbix
 
 # Azure ML local metadata
 aml_config/
