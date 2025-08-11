@@ -48,7 +48,7 @@ pip install -r requirements.txt
 Place `BPI_Challenge_2012.xes` (or `bpi2012.csv`) into `data/`.
 
 3) **Run Day 1**
-- Run notebooks **01 → 02 → 03** (set `AZURE_SUBSCRIPTION_ID`, `AZURE_RESOURCE_GROUP`, `AZURE_ML_WORKSPACE` to register/deploy).
+- Run **01 → 02 → 03** (set `AZURE_SUBSCRIPTION_ID`, `AZURE_RESOURCE_GROUP`, `AZURE_ML_WORKSPACE` to register/deploy).
 
 4) **Run Day 2**
 - Run **04** to export Power BI data: `artifacts/powerbi/{cases,events,edges}.csv`.
@@ -68,7 +68,6 @@ Place `BPI_Challenge_2012.xes` (or `bpi2012.csv`) into `data/`.
 ---
 
 ## Dashboard pages
-
 - **Process Health:** KPIs (Total Cases, Late Rate, Avg/P95 Cycle Time), distributions, slice by resources/risk bins.  
 - **Bottleneck Map:** Edges matrix (from→to with counts/avg gap) or a process‑mining custom visual.  
 - **Prediction Lens:** Threshold slider, **Precision/Recall/F1** cards, and a per‑case table (`risk_score`, `y_late`, key drivers).
@@ -97,7 +96,6 @@ BPI2012 (XES/CSV)
 
 ---
 
-
 ## Live assets
 
 - **Open interactive report:** `YOUR_POWER_PAGES_OR_EMBED_URL`  
@@ -111,7 +109,6 @@ BPI2012 (XES/CSV)
 
 <p align="center">
   <img src="screenshots/endpoint-status.png" width="950" alt="Azure ML — Managed Online Endpoint (blue) deployed and healthy" />
-  <img src="screenshots/endpoint-curl-test.png" width="950" alt="Azure ML — Managed Online Endpoint (blue) deployed and healthy" />
   <br><sub>Azure ML endpoint — blue deployment live (keys & URI redacted)</sub>
 </p>
 
@@ -126,6 +123,10 @@ curl -s -X POST "$SCORING_URI" \
   -H "Authorization: Bearer $KEY" \
   -d @scripts/sample_request.json
 ```
+<p align="center">
+  <img src="screenshots/endpoint-curl-test.png" width="950" alt="Azure ML — Managed Online Endpoint (blue) deployed and healthy" />
+  <br><sub>Azure ML endpoint — blue deployment sample curl</sub>
+</p>
 
 ---
 
