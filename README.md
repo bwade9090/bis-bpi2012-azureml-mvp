@@ -70,7 +70,7 @@ Place `BPI_Challenge_2012.xes` (or `bpi2012.csv`) into `data/`.
 ## Dashboard pages
 <p align="center">
   <a href="`https://app.powerbi.com/groups/me/reports/7ef8b675-9274-45fa-a943-4688434280b7?ctid=2eb6774e-6cf6-45a2-9a39-e321dbb6f737&pbi_source=linkShare`" target="_blank">
-    <img src="assets/pbi-health.png" width="1100" alt="Process Health — KPIs and distributions" />
+    <img src="screenshots/pbi-health.png" width="1100" alt="Process Health — KPIs and distributions" />
   </a>
   <br><sub>Process Health — Late Rate, Avg/P95 Cycle Time, distributions (sample)</sub>
 </p>
@@ -104,8 +104,8 @@ BPI2012 (XES/CSV)
 
 ## Live assets
 
+[Power BI 파일(.pbix) 다운로드](BPI2012.pbix)
 - **Open interactive report:** `https://app.powerbi.com/groups/me/reports/7ef8b675-9274-45fa-a943-4688434280b7?ctid=2eb6774e-6cf6-45a2-9a39-e321dbb6f737&pbi_source=linkShare`  
-- **PBIX download:** `dashboards/BPI2012.pbix`  
 - **Repo:** `https://github.com/bwade9090/bis-bpi2012-azureml-mvp.git`
 
 ---
