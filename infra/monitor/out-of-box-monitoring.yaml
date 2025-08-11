@@ -1,0 +1,49 @@
+# out-of-box-monitoring.yaml
+$schema:  http://azureml/sdk-2-0/Schedule.json
+name: credit_default_model_monitoring
+display_name: Credit default model monitoring
+description: Credit default model monitoring setup with minimal configurations
+
+trigger:
+  # perform model monitoring activity daily at 3:15am
+  type: recurrence
+  frequency: day #can be minute, hour, day, week, month
+  interval: 1 # #every day
+  schedule: 
+    hours: 3 # at 3am
+    minutes: 15 # at 15 mins after 3am
+
+create_monitor:
+
+  compute: # specify a spark compute for monitoring job
+    instance_type: standard_e4s_v3
+    runtime_version: "3.4"
+
+  monitoring_target: 
+    ml_task: classification # model task type: [classification, regression, question_answering]
+    endpoint_deployment_id: azureml:bpi2012-risk-endpoint:blue # azureml endpoint deployment id
+
+  monitoring_signals:
+    advanced_data_drift: # monitoring signal name, any user defined name works
+      type: data_drift
+      # reference_dataset is optional. By default referece_dataset is the production inference data associated with Azure Machine Learning online endpoint
+      reference_data:
+        input_data:
+          path: azureml:processed_case_features_labeled:1 # use training data as comparison reference dataset
+          type: uri_file
+        data_context: training
+        data_column_names:
+          target_column: label_late
+      features: 
+        top_n_feature_importance: 10 # monitor drift for top 10 features
+      alert_enabled: true
+      metric_thresholds:
+        numerical:
+          jensen_shannon_distance: 0.01
+        categorical:
+          pearsons_chi_squared_test: 0.02
+
+  alert_notification: # emails to get alerts
+    emails:
+      - bwade9090@gmail.com
+      - hyungbae.cho@bok.or.kr
