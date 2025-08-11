@@ -68,6 +68,12 @@ Place `BPI_Challenge_2012.xes` (or `bpi2012.csv`) into `data/`.
 ---
 
 ## Dashboard pages
+<p align="center">
+  <a href="`https://app.powerbi.com/groups/me/reports/7ef8b675-9274-45fa-a943-4688434280b7?ctid=2eb6774e-6cf6-45a2-9a39-e321dbb6f737&pbi_source=linkShare`" target="_blank">
+    <img src="assets/pbi-health.png" width="1100" alt="Process Health — KPIs and distributions" />
+  </a>
+  <br><sub>Process Health — Late Rate, Avg/P95 Cycle Time, distributions (sample)</sub>
+</p>
 - **Process Health:** KPIs (Total Cases, Late Rate, Avg/P95 Cycle Time), distributions, slice by resources/risk bins.  
 - **Bottleneck Map:** Edges matrix (from→to with counts/avg gap) or a process‑mining custom visual.  
 - **Prediction Lens:** Threshold slider, **Precision/Recall/F1** cards, and a per‑case table (`risk_score`, `y_late`, key drivers).
@@ -98,9 +104,9 @@ BPI2012 (XES/CSV)
 
 ## Live assets
 
-- **Open interactive report:** `YOUR_POWER_PAGES_OR_EMBED_URL`  
-- **PBIX download:** `LINK_TO_PBIX`  
-- **Repo:** `YOUR_REPO_URL`
+- **Open interactive report:** `https://app.powerbi.com/groups/me/reports/7ef8b675-9274-45fa-a943-4688434280b7?ctid=2eb6774e-6cf6-45a2-9a39-e321dbb6f737&pbi_source=linkShare`  
+- **PBIX download:** `dashboards/BPI2012.pbix`  
+- **Repo:** `https://github.com/bwade9090/bis-bpi2012-azureml-mvp.git`
 
 ---
 
