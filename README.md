@@ -1,5 +1,10 @@
 # End‑to‑End Process Mining & Predictive Risk (BPI 2012) — Azure ML + Power BI
 
+[![PBIX Download](https://img.shields.io/badge/Report-.pbix-lightgrey)](dashboards/BPI2012.pbix "Download .pbix")
+[![Azure ML Endpoint](https://img.shields.io/badge/Azure%20ML-Endpoint%20Live-0078d4)](#inference-rest "Jump to REST details")
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](#quick-start)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 <p align="center">
   <img src="screenshots/pbi-bottleneck.png" width="1100" alt="Bottleneck Map — From→To edges with counts & avg gap" />
   <br><sub>Bottleneck Map — Top transitions by count/avg gap (sample)</sub>
@@ -73,7 +78,7 @@ Place `BPI_Challenge_2012.xes` (or `bpi2012.csv`) into `data/`.
   <br><sub>Process Health — Late Rate, Avg/P95 Cycle Time, distributions (sample)</sub>
 </p>
 
-[Power BI 파일(.pbix) 다운로드](dashboards/BPI2012.pbix)
+[![PBIX Download](https://img.shields.io/badge/Report-.pbix-lightgrey)](dashboards/BPI2012.pbix "Download .pbix")
 
 - **Process Health:** KPIs (Total Cases, Late Rate, Avg/P95 Cycle Time), distributions, slice by resources/risk bins.  
 - **Bottleneck Map:** Edges matrix (from→to with counts/avg gap) or a process‑mining custom visual.  
